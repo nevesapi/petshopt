@@ -1,4 +1,5 @@
 // src/app/contato/page.tsx
+import estilos from "./contato.module.css";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function Contato() {
   return (
-    <section>
+    <section className={estilos.conteudo}>
       <h2>Contato</h2>
       <p>Texto qualquer da página Contato....</p>
     </section>
