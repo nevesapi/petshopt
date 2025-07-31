@@ -1,5 +1,6 @@
 // src/components/Cabecalho.tsx
 import Link from "next/link";
+import Menu from "./Menu";
 
 export default function Cabecalho() {
   return (
@@ -7,12 +8,7 @@ export default function Cabecalho() {
       <h1>
         <Link href="/">PetShop</Link>
       </h1>
-      <nav>
-        <Link href="/">Blog</Link>
-        <Link href="/produtos">Produtos</Link>
-        <Link href="/sobre">Sobre</Link>
-        <Link href="/contato">Contato</Link>
-      </nav>
+      <Menu />
     </header>
   );
 }
