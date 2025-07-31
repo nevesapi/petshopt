@@ -1,5 +1,9 @@
 # Exercícios
 
+## 02_paginas-basicas-links-ajustes-de-layout-metadados
+
+### 30/07
+
 1. **Página inicial (`src/app/page.tsx`)**
 
 - Crie uma `<section>`.
@@ -18,3 +22,7 @@
   - Configure o `description` com um resumo curto da página. Ex: `"Entre em contato conosco"`.
 
 3. Para visualizar as páginas, simplesmente acesse `localhost:3000/nome_da_pagina`
+
+### 31/07
+
+No componente `Menu.tsx`, faça a programação necessária para detectar qual rota/página está aberta no momento e, com isso, deixar a classe `ativo` aplicada ao `Link` correspondente.
