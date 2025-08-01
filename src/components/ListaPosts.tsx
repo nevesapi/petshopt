@@ -10,6 +10,8 @@ type ListaPostsProps = {
 };
 
 export default function ListaPosts({ posts }: ListaPostsProps) {
+  console.log(posts);
+
   return (
     <div className={estilos.posts}>
       <article>
