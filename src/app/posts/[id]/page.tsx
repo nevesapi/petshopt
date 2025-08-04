@@ -10,6 +10,8 @@ export default async function DetalhePost({ params }: DetalhePostProps) {
   const { id } = await params;
   console.log(id);
 
+  /* DESAFIO! Faça um novo fetch na API usando este ID e mostre no HTML abaixo os dados obtidos! */
+
   return (
     <article className={estilos.conteudo}>
       <h2>Título...</h2>
