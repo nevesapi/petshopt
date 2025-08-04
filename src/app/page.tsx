@@ -15,13 +15,12 @@ export default async function Home() {
   }
 
   const posts: Post[] = await resposta.json();
-  console.log(posts);
 
   return (
     <section className={estilos.conteudo}>
       <h2>Pet Notícias</h2>
       <p>Aqui você encontra as últimas notícias sobre Pets.</p>
-      <ListaPosts posts={arrayPosts} />
+      <ListaPosts posts={posts} />
     </section>
   );
 }
