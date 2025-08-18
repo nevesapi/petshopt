@@ -7,6 +7,7 @@ import estilos from "./ListaPosts.module.css";
 import Link from "next/link";
 import FiltroCategorias from "./FiltroCategorias";
 import { useState } from "react";
+import SemPosts from "./SemPosts";
 
 type ListaPostsProps = {
   posts: Post[];
@@ -22,17 +23,21 @@ export default function ListaPosts({ posts }: ListaPostsProps) {
   Passamos null entre parênteses indicando que por padrão não há categoria selecionada. */
   const [categoriaAtiva, setCategoriaAtiva] = useState<null | string>(null);
 
+  /* Gerando uma nova lista de posts podendo ter
+  o filtro de categoria aplicado. Caso contrário, retorna todos os posts. */
   const postsFiltrados = categoriaAtiva
     ? posts.filter((post) => post.categoria === categoriaAtiva)
     : posts;
 
-  console.log(postsFiltrados);
-
   return (
     <>
       <FiltroCategorias />
+
+      {/* Caso não tenha posts, renderiza SemPosts */}
+      {postsFiltrados.length === 0 && <SemPosts />}
+
       <div className={estilos.posts}>
-        {posts.map(({ id, titulo, subtitulo }) => (
+        {postsFiltrados.map(({ id, titulo, subtitulo }) => (
           <article key={id}>
             <Link href={`/posts/${id}`}>
               <h3>{titulo}</h3>
