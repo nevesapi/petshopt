@@ -7,12 +7,15 @@ export async function enviarContato(dadosFormulario: FormData) {
   const email = dadosFormulario.get("email")?.toString().trim();
   const mensagem = dadosFormulario.get("mensagem")?.toString().trim();
 
-  if (!email || !nome || !mensagem)
+  if (!email || !nome || !mensagem) {
     throw new Error("Por favor, preencha todos os campos!");
+  }
 
   const { error } = await supabase
     .from("contatos")
     .insert({ nome, email, mensagem });
 
-  if (error) throw new Error("Falha ao enviar mensagem. Tente novamente");
+  if (error) {
+    throw new Error("Falha ao enviar mensagem. Tente novamente");
+  }
 }

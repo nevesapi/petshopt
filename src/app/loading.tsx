@@ -1,4 +1,4 @@
-import Container from "./Container";
+import Container from "../components/Container";
 import estilos from "./loading.module.css";
 
 export default function Loading() {
@@ -7,7 +7,7 @@ export default function Loading() {
       <h2>Carregando...</h2>
       <Container>
         <div className={estilos.imagemLoading}>
-          <img src="/images/loadging.svg" alt="Pacman" />
+          <img src="/images/loading.svg" alt="Pacman" />
         </div>
       </Container>
     </section>
