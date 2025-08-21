@@ -2,6 +2,7 @@ import Container from "@/components/Container";
 import estilos from "./detalhe-post.module.css";
 import { Post } from "@/types/Post";
 import { notFound } from "next/navigation";
+import { supabase } from "@/lib/supabase";
 
 // src/app/posts/[id]/page.tsx
 type DetalhePostProps = {
@@ -14,20 +15,21 @@ type DetalhePostProps = {
 - O retorno da função DEVE SER uma Promise
 - Não se esqueça de chamar/usar esta nova função dentro do generateMetadata e do DetalhePost no lugar do código que vc irá remover. */
 async function buscarPostPorId(id: string): Promise<Post> {
-  const resposta = await fetch(`http://localhost:2112/posts/${id}`, {
-    next: { revalidate: 0 },
-  });
+  const { data, error } = await supabase
+    .from("posts")
+    .select("*")
+    .eq("id", id)
+    .single<Post>();
 
-  if (resposta.status === 404) {
+  if (error?.code === "PTGRS116") {
+  }
+
+  if (error) {
     // Buscar a page not-found.tsx automaticamente em caso de erro 404
     notFound();
   }
 
-  if (!resposta.ok) {
-    throw Error("Erro ao buscar o post: " + resposta.statusText);
-  }
-
-  const post: Post = await resposta.json();
+  const post: Post = data;
   return post;
 }
 

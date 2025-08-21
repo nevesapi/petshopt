@@ -3,17 +3,17 @@ import ListaPosts from "@/components/ListaPosts";
 import estilos from "./page.module.css";
 import { Post } from "@/types/Post";
 import SemPosts from "@/components/SemPosts";
+import { supabase } from "@/lib/supabase";
 
 export default async function Home() {
-  const resposta = await fetch(`http://localhost:2112/posts`, {
-    next: { revalidate: 0 },
-  });
+  const { data, error } = await supabase.from("posts").select("*");
+  console.log(data);
 
-  if (!resposta.ok) {
-    throw new Error("Erro ao buscar os posts: " + resposta.statusText);
+  if (error) {
+    throw new Error("Erro ao buscar posts. " + error.message);
   }
-
-  const posts: Post[] = await resposta.json();
+  
+  const posts: Post[] = data;
 
   return (
     <section className={estilos.conteudo}>
